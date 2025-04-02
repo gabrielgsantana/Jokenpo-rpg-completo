@@ -1,10 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Uncial+Antiqua&display=swap');
 
-/* IMPORTAÇÃO DAS FONTES MEDIEVAIS */
-body {
-    background: url(imagens-verificador/background-verificador.png) no-repeat fixed;
-    background-size: cover;
+/* RESET DE MARGENS E PADRÕES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* GARANTE QUE O HTML E BODY OCUPAM 100% DA ALTURA */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* REMOVE O SCROLL LATERAL */
     font-family: 'Uncial Antiqua', cursive;
+}
+
+/* FUNDO DA PÁGINA */
+body {
+    background: url('imagens-verificador/background-verificador.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    flex: 1; /* EXPANDE O CONTEÚDO PARA EMPURRAR O FOOTER PARA O FINAL */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
 /* FUNDO ESCURO TRANSLÚCIDO PARA O POPUP */
@@ -22,7 +47,7 @@ body {
 
 /* ESTILIZAÇÃO DA CAIXA POPUP */
 .popup {
-    background: #1a1a1a8c;
+    background: rgba(26, 26, 26, 0.8);
     padding: 50px;
     border-radius: 15px;
     text-align: center;
@@ -35,7 +60,7 @@ body {
     font-family: 'MedievalSharp', cursive;
 }
 
-/* ESTILIZAÇÃO DO TÍTULO PRINCIPAL */
+/* ESTILIZAÇÃO DOS TÍTULOS */
 h2 {
     font-size: 3.8rem;
     color: #FFD700;
@@ -44,7 +69,7 @@ h2 {
     font-family: 'Uncial Antiqua', cursive;
 }
 
-/* ESTILIZAÇÃO DO TEXTO INFORMATIVO */
+/* ESTILIZAÇÃO DO TEXTO */
 .popup p {
     font-size: 1.5rem;
     color: #ffffff;
@@ -94,4 +119,29 @@ h2 {
     margin-top: 10px;
     font-size: 1.4rem;
     text-shadow: 2px 2px 6px rgba(255, 0, 0, 0.8);
+}
+
+/* ESTILIZAÇÃO DO RODAPÉ */
+footer {
+    width: 100%;
+    background: rgba(116, 114, 114, 0.445);
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgb(10, 10, 10);
+    margin-top: auto; /* FIXA O FOOTER NO FINAL DA PÁGINA */
+    position: relative;
+}
+
+/* ESTILIZAÇÃO DOS LINKS NO RODAPÉ */
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* EFEITO NO LINK AO PASSAR O MOUSE */
+footer a:hover {
+    text-decoration: underline;
+    color: #0059ff;
 }
