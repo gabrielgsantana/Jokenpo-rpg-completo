@@ -1,56 +1,51 @@
 // FUNÇÃO QUE É CHAMADA QUANDO O JOGADOR ESCOLHE UM PERSONAGEM
-
 function selecionarPersonagem(jogador) {
-
-    // ARRAY COM AS OPÇÕES DISPONÍVEIS
+    // OPÇÕES DE PERSONAGENS
     const opcoes = ['guerreiro', 'assassino', 'mago'];
-    
-    // ESCOLHA ALEATÓRIA DA CPU
+
+    // CPU ESCOLHE UM PERSONAGEM ALEATÓRIO
     const cpu = opcoes[Math.floor(Math.random() * opcoes.length)];
 
-    // EXIBE A ESCOLHA DA CPU NO CONSOLE
     console.log(`A CPU ESCOLHEU: ${cpu}`);
 
-    // DETERMINA O RESULTADO DA BATALHA
+    // DETERMINA O VENCEDOR E A EXPLICAÇÃO DA VITÓRIA
     let resultado = determinarVencedor(jogador, cpu);
+    let explicacao = explicarVantagem(jogador, cpu);
 
-    // EXIBE NO CONSOLE SE A CPU GANHOU OU PERDEU
-    if (resultado.includes("PARABÉNS")) {  
-        console.log(`A CPU PERDEU! 😢`); // JOGADOR VENCEU, CPU PERDEU
-    } else if (resultado.includes("PERDEU")) {  
-        console.log(`A CPU VENCEU! 🎉`); // CPU VENCEU, JOGADOR PERDEU
-    } else {  
-        console.log(`FOI UM EMPATE! 😐`); // EMPATE
-    }
-
-    // SELECIONA OS ELEMENTOS DE IMAGEM DOS PERSONAGENS NO HTML
+    // ALTERA AS IMAGENS DOS PERSONAGENS DE ACORDO COM O RESULTADO
     let imgJogador = document.getElementById("player-img");
     let imgCpu = document.getElementById("cpu-img");
 
-    // DEFINE AS IMAGENS DO RESULTADO DA BATALHA
+    // SE O JOGADOR VENCEU
     if (resultado.includes("PARABÉNS")) {  
-        imgJogador.src = `imagens/${jogador}/${jogador}-win.png`; // JOGADOR VENCE
-        imgCpu.src = `imagens/${cpu}/${cpu}-lose.png`;   // CPU PERDE
-    } else if (resultado.includes("PERDEU")) {  
-        imgJogador.src = `imagens/${jogador}/${jogador}-lose.png`;  // JOGADOR PERDE
-        imgCpu.src = `imagens/${cpu}/${cpu}-win.png`;  // CPU VENCE
-    } else {  
-        imgJogador.src = `imagens/${jogador}/${jogador}-base.png`;  // EMPATE
-        imgCpu.src = `imagens/${cpu}/${cpu}-base.png`;  
+        imgJogador.src = `imagens/${jogador}/${jogador}-win.png`;
+        imgCpu.src = `imagens/${cpu}/${cpu}-lose.png`;
+    } 
+    // SE A CPU VENCEU
+    else if (resultado.includes("PERDEU")) {  
+        imgJogador.src = `imagens/${jogador}/${jogador}-lose.png`;
+        imgCpu.src = `imagens/${cpu}/${cpu}-win.png`;
+    } 
+    // SE DER EMPATE
+    else {  
+        imgJogador.src = `imagens/${jogador}/${jogador}-base.png`;
+        imgCpu.src = `imagens/${cpu}/${cpu}-base.png`;
     }
 
-    // ATUALIZA O TEXTO DE RESULTADO NA TELA
-    document.getElementById("mensagem-resultado").innerHTML = 
-    `VOCÊ ESCOLHEU ${jogador.toUpperCase()} E A CPU ESCOLHEU ${cpu.toUpperCase()}.<br>${resultado}`;
+    // EXIBE O RESULTADO NA TELA
+    document.getElementById("mensagem-resultado").innerHTML = `  
+        VOCÊ ESCOLHEU ${jogador.toUpperCase()} E A CPU ESCOLHEU ${cpu.toUpperCase()}.<br>
+        ${resultado} <br><br>
+        <strong>${explicacao}</strong>
+    `;
 
-    // OCULTA A TELA DE SELEÇÃO E EXIBE A TELA DE RESULTADO
+    // ESCONDE A TELA DO JOGO E MOSTRA A TELA DE RESULTADO
     document.getElementById("game-screen").style.display = "none";
     document.getElementById("result-screen").style.display = "block";
 }
 
-// FUNÇÃO QUE DETERMINA O VENCEDOR DO JOGO COM BASE NAS REGRAS
+// FUNÇÃO QUE DETERMINA O VENCEDOR DO JOGO
 function determinarVencedor(jogador, cpu) {
-
     // REGRAS DO JOGO: QUEM VENCE QUEM
     const regras = {
         "guerreiro": "assassino",  
@@ -58,22 +53,46 @@ function determinarVencedor(jogador, cpu) {
         "mago": "guerreiro"        
     };
 
-    // SE OS PERSONAGENS FOREM IGUAIS, É EMPATE
+    // SE FOR EMPATE
     if (jogador === cpu) {
         return "⏳ O COMBATE FOI INTENSO,<br>MAS TERMINOU EM EMPATE!";
     } 
-    // SE O JOGADOR VENCER DE ACORDO COM AS REGRAS
+    // SE O JOGADOR VENCEU
     else if (regras[jogador] === cpu) {
-        return "🎉 PARABÉNS! VOCÊ VENCEU!🏆";
+        return "🎉 PARABÉNS, VOCÊ VENCEU! 🏆";
     } 
-    // SE A CPU VENCER
+    // SE A CPU VENCEU
     else {
-        return "💀 VOCÊ PERDEU! A CPU FOI MAIS FORTE.";
+        return "💀 VOCÊ PERDEU, A CPU FOI MAIS FORTE.";
     }
 }
 
-// FUNÇÃO QUE REINICIA O JOGO, VOLTANDO PARA A TELA INICIAL
+// FUNÇÃO QUE EXPLICA POR QUE O VENCEDOR GANHOU OU SE DEU EMPATE
+function explicarVantagem(jogador, cpu) {
+    // MENSAGENS EXPLICATIVAS BASEADAS NAS REGRAS DO JOGO
+    const frasesExplicativas = {
+        "guerreiro-assassino": "⚔️ O Guerreiro venceu o Assassino porque sua armadura resistiu aos ataques rápidos!",
+        "assassino-mago": "🗡️ O Assassino venceu o Mago porque atacou antes que ele pudesse conjurar um feitiço!",
+        "mago-guerreiro": "🔮 O Mago venceu o Guerreiro porque usou sua magia para evitar os golpes pesados!"
+    };
+
+    // SE O JOGADOR VENCEU, EXIBE A FRASE NORMAL
+    if (frasesExplicativas[`${jogador}-${cpu}`]) {
+        return frasesExplicativas[`${jogador}-${cpu}`];
+    } 
+    // SE A CPU VENCEU, INVERTE A FRASE PARA FICAR CORRETO
+    else if (frasesExplicativas[`${cpu}-${jogador}`]) {
+        return frasesExplicativas[`${cpu}-${jogador}`].replace("venceu", "derrotou");
+    } 
+    // SE FOR EMPATE, EXPLICA QUE ELES DECIDIRAM VIRAR AMIGOS 🍻
+    else {
+        return "🍻 Ambos perceberam que eram igualmente fortes! Então decidiram deixar as armas de lado e foram beber juntos na taverna!";
+    }
+}
+
+// FUNÇÃO QUE REINICIA O JOGO
 function reiniciarJogo() {
-    document.getElementById("game-screen").style.display = "block";  // EXIBE A TELA DE JOGO
-    document.getElementById("result-screen").style.display = "none"; // OCULTA A TELA DE RESULTADO
+    // ESCONDE A TELA DE RESULTADO E VOLTA PARA A TELA INICIAL
+    document.getElementById("game-screen").style.display = "block";
+    document.getElementById("result-screen").style.display = "none";
 }
