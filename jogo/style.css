@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Uncial+Antiqua&display=swap');
 
-/* RESETANDO MARGENS E PADRÕES DO HTML */
+/* RESETANDO MARGENS E PADRÕES */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* CONFIGURAÇÃO DO FUNDO E ESTILO GERAL DA PÁGINA */
+/* CONFIGURAÇÃO GERAL DA PÁGINA */
 body {
     background: url('imagens/background-rpg.png') no-repeat center center fixed;
     background-size: cover;
@@ -22,7 +22,7 @@ body {
     padding: 20px;
 }
 
-/* CONFIGURAÇÃO DO CONTAINER PRINCIPAL */
+/* CONTAINER PRINCIPAL */
 .container {
     background: rgba(0, 0, 0, 0.8);
     padding: 30px;
@@ -61,6 +61,15 @@ h3 {
     font-style: italic;
 }
 
+/* EXPLICAÇÃO COM TEXTO BRANCO */
+.explicacao {
+    font-size: 1.3rem;
+    color: #ffffff;  /* Texto branco */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
 /* ESTILIZAÇÃO DOS BOTÕES DOS PERSONAGENS */
 .characters {
     display: flex;
@@ -89,7 +98,7 @@ h3 {
     transform: scale(1.3);
 }
 
-/* EFEITOS VISUAIS QUANDO O MOUSE PASSA SOBRE OS PERSONAGENS */
+/* EFEITOS AO PASSAR O MOUSE */
 .guerreiro:hover img {
     content: url('imagens/guerreiro/guerreiro-click.png');
     background: rgba(148, 148, 148, 0.589);  
@@ -105,7 +114,7 @@ h3 {
     background: rgba(216, 97, 42, 0.589);
 }
 
-/* CONFIGURAÇÃO DA ÁREA DE RESULTADOS */
+/* ÁREA DE RESULTADOS */
 .resultados {
     display: flex;         
     justify-content: center;  
@@ -119,7 +128,7 @@ h3 {
     height: auto;  
 }
 
-/* ESTILIZAÇÃO DOS TÍTULOS NA TELA DE RESULTADO */
+/* TÍTULOS NA TELA DE RESULTADO */
 .resultados h3 {
     font-size: 1.5rem;
     color: #FFD700;
@@ -127,7 +136,7 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* ESTILIZAÇÃO DO BOTÃO "TENTAR NOVAMENTE" */
+/* BOTÃO "TENTAR NOVAMENTE" */
 button {
     margin-top: 20px;
     padding: 12px 25px;
@@ -143,7 +152,7 @@ button {
     box-shadow: 0 4px 10px rgba(255, 165, 0, 0.6);
 }
 
-/* EFEITO VISUAL NO BOTÃO AO PASSAR O MOUSE */
+/* EFEITO NO BOTÃO AO PASSAR O MOUSE */
 button:hover {
     background: linear-gradient(45deg, #FFA500, #FF4500);
     color: #fff;
@@ -169,7 +178,7 @@ footer {
     color: rgb(255, 255, 255);
 }
 
-/* ESTILIZAÇÃO DOS LINKS NO RODAPÉ */
+/* LINKS NO RODAPÉ */
 footer a {
     color: #ffffff;
     text-decoration: none;
