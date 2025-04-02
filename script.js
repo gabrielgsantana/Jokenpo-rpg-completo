@@ -13,7 +13,7 @@ function verificarIdade() {
 
     // SE TIVER 18 ANOS OU MAIS, REDIRECIONA PARA O JOGO
     if (idade >= 18) {
-        window.location.href = "Jogo/index-gamer.html"; 
+        window.location.href = "jogo/index-gamer.html"; 
     } else {
         // SE FOR MENOR DE 18, EXIBE MENSAGEM DE RESTRIÇÃO
         mensagemErro.textContent = "🚫 VOCÊ PRECISA TER 18 ANOS OU MAIS PARA ACESSAR ESTE SITE.";
