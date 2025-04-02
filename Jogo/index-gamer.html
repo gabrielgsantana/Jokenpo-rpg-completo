@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpô RPG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- TELA PRINCIPAL DO JOGO -->
+    <div class="container" id="game-screen">
+        <div class="content">
+            <h1>⚔️ Escolha seu Guerreiro! ⚔️</h1>
+            <h2>🔥 Enfrente a CPU em uma batalha épica! 🔥</h2>
+            
+            <!-- OPÇÕES DE PERSONAGENS -->
+            <div class="characters">
+                <button class="character-btn guerreiro" onclick="selecionarPersonagem('guerreiro')">
+                    <img src="imagens/guerreiro/guerreiro-base.png" alt="Guerreiro">
+                </button>
+
+                <button class="character-btn assassino" onclick="selecionarPersonagem('assassino')">
+                    <img src="imagens/assassino/assassino-base.png" alt="Assassino">
+                </button>
+
+                <button class="character-btn mago" onclick="selecionarPersonagem('mago')">
+                    <img src="imagens/mago/mago-base.png" alt="Mago">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA DE RESULTADO (INICIALMENTE OCULTA) -->
+    <div class="container resultado" id="result-screen" style="display: none;">
+        <h2 id="mensagem-resultado"></h2> 
+        
+        <div class="resultados">
+            <div>
+                <h3>Você escolheu:</h3>
+                <img id="player-img" src="" alt="Seu personagem">
+            </div>
+
+            <div>
+                <h3>CPU escolheu:</h3>
+                <img id="cpu-img" src="" alt="Personagem da CPU">
+            </div>
+        </div>
+
+        <button onclick="reiniciarJogo()">Jogar Novamente</button> <!-- REINICIA O JOGO -->
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+        🛡️ Feito por <a href="https://github.com/gabrielgsantana" target="_blank">Gabriel Santana</a> | 
+        <span class="ano-footer">2025</span> 
+        <a href="https://www.alura.com.br/" target="_blank">ALURA</a> ⚔️
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
+</html>
